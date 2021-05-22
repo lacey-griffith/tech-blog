@@ -56,6 +56,27 @@ router.post('/', (req, res) => {
     .catch(err => res.status(500).json(err))
 });
 
+//login a user
+router.post('/login', (req, res) => {
+    User.findOne({
+        where: {
+            username: req.body.username
+        }
+    }).then(userData => {
+        if(!userData){
+            res.status(404).json({message: 'That user was not found, try again!'})
+            return
+        }
+        const correctPw = userData.passwordCheck(req.body.password)
+        if(!correctPw){
+            res.status(400).json({message: 'Yikes, wrong password!'})
+            return
+        }
+        res.json({user: userData, message: `Success! You're in!`})
+
+    }).catch(err => res.status(500).json(err))
+});
+
 //delete user
 router.delete('/:id', (req, res) => {
     User.destroy({
