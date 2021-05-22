@@ -1,14 +1,23 @@
 const router = require('express').Router();
-const { BlogPost, User } = require('../../models')
+const { BlogPost, User, Comment } = require('../../models')
 
 
 //get all posts
 //update to include user information on blog posts
+//update to include comment data on blog posts
 router.get('/', (req, res) => {
     BlogPost.findAll({
         attributes: ['id', 'title', 'post_text', 'created_at'],
         order: [['created_at', 'DESC']],
         include: [
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id','user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
             {
                 model: User,
                 attributes: ['username']
@@ -27,6 +36,14 @@ router.get('/:id', (req, res) => {
         },
         attributes: ['id', 'title', 'post_text', 'created_at'],
         include: [
+            {
+                model: Comment,
+                attributes: ['id','comment_text', 'post_id','user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            },
             {
                 model: User,
                 attributes: ['username']
