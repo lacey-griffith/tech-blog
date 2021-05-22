@@ -29,6 +29,7 @@ router.get('/:id', (req, res) => {
 //update user
 router.put('/:id', (req, res) => {
     User.update(req.body, {
+        individualHooks: true,
         where: {
             id: req.params.id
         }
