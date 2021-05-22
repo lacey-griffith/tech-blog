@@ -1,10 +1,19 @@
 const router = require('express').Router();
-const { BlogPost } = require('../../models')
+const { BlogPost, User } = require('../../models')
 
 
 //get all posts
+//update to include user information on blog posts
 router.get('/', (req, res) => {
     BlogPost.findAll({
+        attributes: ['id', 'title', 'post_text', 'created_at'],
+        order: [['created_at', 'DESC']],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
         })
         .then(postData => res.json(postData))
         .catch(err => res.status(500).json(err))
@@ -15,7 +24,14 @@ router.get('/:id', (req, res) => {
     BlogPost.findOne({
         where: {
             id: req.params.id
-        }
+        },
+        attributes: ['id', 'title', 'post_text', 'created_at'],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            }
+        ]
     })
     .then(postData => {
         if(!postData){
@@ -27,9 +43,20 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(500).json(err))
 });
 
-//update post
+//create new post
+router.post('/', (req, res) => {
+    BlogPost.create({
+        title: req.body.title,
+        post_text: req.body.post_text,
+        user_id: req.body.user_id
+    }).then(postData => res.json(postData))
+    .catch(err => res.status(500).json(err))
+});
+
+//update post title
 router.put('/:id', (req, res) => {
-    BlogPost.update(req.body, {
+    BlogPost.update(
+        { title: req.body.title }, {
         where: {
             id: req.params.id
         }
@@ -40,16 +67,6 @@ router.put('/:id', (req, res) => {
         }
         res.json(postData)
     }).catch(err => res.status(500).json(err))
-});
-
-//create new post
-router.post('/', (req, res) => {
-    BlogPost.create({
-        title: req.body.title,
-        post_text: req.body.post_text,
-        user_id: req.body.user_id
-    }).then(postData => res.json(postData))
-    .catch(err => res.status(500).json(err))
 });
 
 //delete post
