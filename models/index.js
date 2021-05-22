@@ -1,7 +1,4 @@
-//const modelName = require('./modelName')
-//do for all models
+const User = require('./User');
+const BlogPost = require('./BlogPost');
 
-//create associations below
-
-
-//module.exports = {modelNames, go, here}
+module.exports = {User, BlogPost}
