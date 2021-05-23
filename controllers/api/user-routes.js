@@ -67,7 +67,16 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-    .then(userData => res.json(userData))
+    .then(userData => {
+        //when a user signs up, save as session and determine loggedin true
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
+            req.session.loggedIn = true;
+
+            res.json(userData)
+        })
+    })
     .catch(err => res.status(500).json(err))
 });
 
@@ -87,10 +96,30 @@ router.post('/login', (req, res) => {
             res.status(400).json({message: 'Yikes, wrong password!'})
             return
         }
+        //when a user successfully logs in, save as session and determine loggedin is true
+        req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.username = userData.username;
+        req.session.loggedIn = true;
+
         res.json({user: userData, message: `Success! You're in!`})
+        })
 
     }).catch(err => res.status(500).json(err))
 });
+
+//logout a user
+router.post('/logout', (req, res) => {
+    if(req.session.loggedIn){
+        req.session.destroy(() => {
+            //send status of no content back once session is terminated
+            res.status(204).end();
+        })
+    } else {
+        //session to terminate is not found if user is not logged in
+        res.status(404).end();
+    }
+})
 
 //delete user
 router.delete('/:id', (req, res) => {

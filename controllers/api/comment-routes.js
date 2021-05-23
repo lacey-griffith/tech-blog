@@ -12,13 +12,15 @@ router.get('/', (req, res) => {
 
 //post new comment
 router.post('/', (req, res) => {
-    Comment.create({
-        comment_text: req.body.comment_text,
-        user_id: req.body.user_id,
-        post_id: req.body.post_id
-    })
-    .then(commentData => res.json(commentData))
-    .catch(err => res.status(500).json(err))
+    if(req.session){
+        Comment.create({
+            comment_text: req.body.comment_text,
+            user_id: req.session.user_id,
+            post_id: req.body.post_id
+        })
+        .then(commentData => res.json(commentData))
+        .catch(err => res.status(500).json(err))
+    }
 });
 
 //put update comment
