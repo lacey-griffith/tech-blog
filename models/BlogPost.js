@@ -14,12 +14,12 @@ BlogPost.init({
     title: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {len: [1,50]}
+        validate: {len: [1]}
     }, 
     post_text: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {len: [10, 500]}
+        validate: {len: [1]}
     },
     user_id: {
         type: DataTypes.INTEGER,

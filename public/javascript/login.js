@@ -16,7 +16,7 @@ async function signUp (event) {
             headers: {'Content-Type': 'application/json'}
         })
         if(res.ok){
-            console.log('sign up successful')
+            document.location.replace('/dashboard/')
         } else {
             alert(res.statusText)
         }
