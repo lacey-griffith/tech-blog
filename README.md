@@ -31,8 +31,6 @@ You can also visit my GitHub profile by clicking [here](https://github.com/lacey
 
 ## Site Images
 Example of the login and sign-up screen.
-![Site Image](./images/login_screen.png)
-Example of the homepage screen.
-![Site Image](./images/homepage.png)
+![Site Image](./images/login:signup.png)
 Example of the screen when a logged in user is creating a new post.
-![Site Image](./images/new_post.png)
+![Site Image](./images/create_new.png)
