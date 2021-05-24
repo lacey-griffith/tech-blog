@@ -1,5 +1,5 @@
 <section>
-    <h3>New Blog Post</h3>
+    <h3>create new blog post</h3>
 
 <form class='new-post-form'>
 <div>
@@ -11,18 +11,18 @@
     <textarea name='post-text' id='post-text' placeholder="What are you going to blog about today?"></textarea>
 </div>
 <div>
-    <button type='submit' class='btn'>Submit</button>
+    <button type='submit' class='btn'>submit</button>
 </div>
 </form>
 </section>
 {{#if posts.length}}
 <seciton>
-    <h2>Your Blog Library</h2>
+    <h2>your blog library</h2>
     <ul>
         {{#each posts as |post|}}
         <li>
             {{> blogpost-info post}}
-            <a href='/dashboard/edit/{{post.id}}' class='edit-link'>Edit</a>
+            <a href='/dashboard/edit/{{post.id}}' class='edit-link'>edit</a>
         </li>
         {{/each}}
     </ul>

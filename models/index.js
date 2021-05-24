@@ -9,29 +9,35 @@ User.hasMany(BlogPost, {
     foreignKey: 'user_id'
 })
 
-//a blog post can belong to one user
-BlogPost.belongsTo(User, {
-    foreignKey: 'user_id'
-})
-
-//comments belong to one user
-Comment.belongsTo(User, {
-    foreignKey: 'user_id'
-})
-
-//comments belong to one blog post
-Comment.belongsTo(BlogPost, {
-    foreignKey: 'post_id'
-})
-
 //user can have many comments
 User.hasMany(Comment, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+})
+
+//a blog post can belong to one user
+BlogPost.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
 })
 
 //posts can have many comments
 BlogPost.hasMany(Comment, {
-    foreignKey: 'post_id'
+    foreignKey: 'post_id',
+    onDelete: 'SET NULL'
 })
+
+//comments belong to one user
+Comment.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL'
+})
+
+//comments belong to one blog post
+Comment.belongsTo(BlogPost, {
+    foreignKey: 'post_id',
+    onDelete: 'SET NULL'
+})
+
 
 module.exports = {User, BlogPost, Comment}

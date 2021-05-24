@@ -3,9 +3,6 @@ async function newPost(event) {
     const title = document.querySelector('input[name="post-title"]').value;
     const post_text = document.querySelector('textarea[name="post-text"]').value;
 
-    console.log(title, post_text)
-    console.log(user_id)
-
     const res = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({

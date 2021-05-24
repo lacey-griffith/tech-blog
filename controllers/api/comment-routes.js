@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Comment } = require('../../models');
+const authenticateUser = require('../../utils/auth')
 
 //get comments
 router.get('/', (req, res) => {
@@ -11,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 //post new comment
-router.post('/', (req, res) => {
+router.post('/', authenticateUser, (req, res) => {
     if(req.session){
         Comment.create({
             comment_text: req.body.comment_text,
@@ -24,7 +25,7 @@ router.post('/', (req, res) => {
 });
 
 //put update comment
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticateUser, (req, res) => {
     Comment.update(
         {comment_text: req.body.comment_text}, {
             where: { 

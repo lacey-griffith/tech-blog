@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { BlogPost, User, Comment } = require('../../models')
-
+const authenticateUser = require('../../utils/auth')
 
 //get all posts
 //update to include user information on blog posts
@@ -61,7 +61,7 @@ router.get('/:id', (req, res) => {
 });
 
 //create new post
-router.post('/', (req, res) => {
+router.post('/', authenticateUser, (req, res) => {
     console.log(req.session)
     BlogPost.create({
         title: req.body.title,
@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
 });
 
 //update post title
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticateUser, (req, res) => {
     BlogPost.update(
         { title: req.body.title }, {
         where: {
@@ -95,7 +95,7 @@ router.delete('/:id', (req, res) => {
         }
     }).then(postData => {
         if(!postData){
-            res.status(404).json({message: 'No post foud.'})
+            res.status(404).json({message: 'No post found.'})
             return
         }
         res.json(postData)
