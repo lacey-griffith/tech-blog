@@ -55,7 +55,7 @@ router.get('/edit/:id', authenticateUser, (req, res) => {
     }).then(postData => {
         if(postData){
         const post = postData.get({plain: true})
-        res.render('edit-blogpost', { post, loggedIn: true })
+        res.render('edit-blogpost', { post, loggedIn: true, username: req.session.username})
         } else {
             res.status(404).end();
         }

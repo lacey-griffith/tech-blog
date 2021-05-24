@@ -114,7 +114,7 @@
   
   .btn-no-style:hover {
     background: none;
-    color: #3486eb;
+    color: rgb(20, 136, 136);
   }
   
   .delete-post-btn {
@@ -130,11 +130,11 @@
     line-height: 150%;
   }
   
-  .post .title span {
+  /* .post .title span {
     font-style: italic;
     font-size: 90%;
     color: #7d7d7d;
-  }
+  } */
   
   .edit-link {
     display: block;
