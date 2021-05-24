@@ -88,11 +88,13 @@ router.post('/login', (req, res) => {
         }
     }).then(userData => {
         if(!userData){
+            alert('Login creditials do not match.')
             res.status(404).json({message: 'That user was not found, try again!'})
             return
         }
         const correctPw = userData.passwordCheck(req.body.password)
         if(!correctPw){
+            alert('Wrong password!')
             res.status(400).json({message: 'Yikes, wrong password!'})
             return
         }

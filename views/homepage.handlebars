@@ -1,4 +1,6 @@
-
+    {{#unless posts.length}}
+    <h3><i>No posts to display.</i></h3>
+    {{/unless}}
 <ul class="post-list">
     {{#each posts as |post|}}
     <li>
