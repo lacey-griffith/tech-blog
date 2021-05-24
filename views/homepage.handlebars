@@ -2,14 +2,7 @@
 <ul class="post-list">
     {{#each posts as |post|}}
     <li>
-        <article class="post">
-            <div class="title">
-               <a href='/post/{{post.id}}'>{{post.title}}</a>
-            </div>
-            <div class="meta">
-                posted by {{post.user.username}} on {{post.created_at}} | {{post.comments.length}} comment(s)
-            </div>
-        </article>
+        {{> blogpost-info post}}
     </li>
     {{/each}}
 </ul>

@@ -4,22 +4,12 @@
     </div>
     <p>{{post.post_text}}</p>
     <div class='meta'>Written by {{post.user.username}}</div>
-    <div class='meta'><i>{{post.created_at}}</i></div>
-    <div class='meta'>{{post.comments.length}} comment(s)</div> 
+    <div class='meta'><i>{{dateFormat post.created_at}}</i></div>
+    <div class='meta'>{{post.comments.length}} {{wordFormat "comment" post.comments.length}}</div> 
     
 </article>
-<div class='comments'>
-    {{#each post.comments}}
-    <section class='comment'>
-        <div class='meta'>
-            {{user.username}} on {{created_at}}
-        </div>
-        <div class='text'>
-            {{comment_text}}
-        </div>
-    </section>
-    {{/each}}
-</div>
+
+{{> comments post.comments}}
 
 {{#if loggedIn}}
 <form class='comment-form'>
