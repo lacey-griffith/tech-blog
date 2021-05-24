@@ -24,7 +24,7 @@ BlogPost.findAll({
     })
     .then(postData => {
         const posts = postData.map(post => post.get({ plain: true }))
-        res.render('homepage', { posts, loggedIn: req.session.loggedIn })
+        res.render('homepage', { posts, loggedIn: req.session.loggedIn, username: req.session.username })
     })
     .catch(err => res.status(500).json(err))
 });
@@ -64,7 +64,7 @@ BlogPost.findOne({
         return
     }    
 const post = postData.get({plain: true})
-res.render('single-blogpost', { post, loggedIn: req.session.loggedIn })
+res.render('single-blogpost', { post, loggedIn: req.session.loggedIn, username: req.session.username })
 })
 .catch(err => res.status(500).json(err))
 });

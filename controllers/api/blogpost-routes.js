@@ -65,7 +65,7 @@ router.post('/', (req, res) => {
     BlogPost.create({
         title: req.body.title,
         post_text: req.body.post_text,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     }).then(postData => res.json(postData))
     .catch(err => res.status(500).json(err))
 });

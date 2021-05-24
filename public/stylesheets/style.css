@@ -6,23 +6,27 @@
     height: 100%;
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
-    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color: black;
   }
   
+  ul {
+    list-style: none;
+  }
   a {
     text-decoration: none;
-    color: #225ca3;
+    color: teal;
     font-weight: bold;
     transition: color .1s;
   }
   
   a:hover {
-    color: #3486eb;
+    color: rgb(20, 136, 136);
   }
   
   button {
-    background-color: #225ca3;
+    background-color: teal;
     border: 0;
     padding: 1%;
     color: white;
@@ -33,7 +37,7 @@
   }
   
   button:hover {
-    background-color: #3486eb;
+    background-color: rgb(20, 136, 136);
   }
   
   .post-list {
@@ -44,12 +48,13 @@
   textarea, input {
     padding: .5%;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid teal;
+    font-family: Arial, Helvetica, sans-serif;
   }
   
   textarea:focus, input:focus {
     outline: none;
-    border: 1px solid #3486eb;
+    border: 1px solid teal;
   }
   
   textarea {
@@ -75,7 +80,7 @@
   }
   
   header {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid lightslategray;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -86,6 +91,9 @@
     font-size: 1em;
   }
   
+  header h4 {
+    font-size: .85em;
+  }
   main {
     flex: 1;
     padding: 2% 4%;
@@ -97,7 +105,7 @@
     padding: 0;
     cursor: pointer;
     text-decoration: none;
-    color: #225ca3;
+    color: teal;
     font-size: 100%;
     font-weight: bold;
     transition: color .1s;
@@ -143,7 +151,9 @@
   }
   
   .comment:nth-child(odd) {
-    background-color: #fff5eb;
+    background-color: darkgray;
+    border-radius: 10px;
+    color: black;
   }
   
   .comment .meta {
@@ -161,7 +171,7 @@
   }
   
   footer {
-    border-top: 1px solid #ccc;
+    border-top: 1px solid lightslategray;
     display: flex;
     justify-content: center;
     padding: 1%;
