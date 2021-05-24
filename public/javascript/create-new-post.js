@@ -2,9 +2,11 @@ async function newPost(event) {
     event.preventDefault();
     const title = document.querySelector('input[name="post-title"]').value;
     const post_text = document.querySelector('textarea[name="post-text"]').value;
-    console.log(title, post_text)
 
-    const res = await fetch('/api/posts', {
+    console.log(title, post_text)
+    console.log(user_id)
+
+    const res = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
             title,
@@ -12,7 +14,6 @@ async function newPost(event) {
         }),
         headers : {'Content-Type': 'application/json'}
     });
-    console.log(res.ok)
     if(res.ok){
         document.location.reload('/dashboard')
     } else {
