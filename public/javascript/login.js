@@ -56,7 +56,6 @@ async function signUp (event) {
         `)
     }
     if(!password){
-        console.log('Password is required')
         $('#signup_alert_container').html('')
         $('#signup_alert_container').append(`
         <div>
@@ -77,7 +76,6 @@ async function signUp (event) {
         `)
     }
     if(!email && !username && !password){
-        console.log('the form cannot be blank')
         $('#signup_alert_container').html('')
         $('#signup_alert_container').append(`
         <div>
@@ -103,7 +101,6 @@ async function login (event) {
             }),
             headers: {'Content-Type': 'application/json'}
         })
-        console.log(res)
         if(res.ok){
             document.location.replace('/dashboard');
         }

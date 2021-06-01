@@ -87,16 +87,12 @@ router.post('/login', (req, res) => {
             username: req.body.username
         }
     }).then(userData => {
-        console.log(userData)
         if(!userData){
-            //alert('Login creditials do not match.')
             res.status(404).json({message: 'That user was not found, try again!'})
             return
         }
         const correctPw = userData.passwordCheck(req.body.password)
-        console.log(correctPw)
         if(!correctPw){
-            // alert('Wrong password!')
             res.status(400).json({message: 'Yikes, wrong password!'})
             return
         }
@@ -110,7 +106,6 @@ router.post('/login', (req, res) => {
         })
 
     }).catch(err => {
-        console.log(err)
         res.status(500).json(err)
     })
 });

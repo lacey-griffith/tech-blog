@@ -1,7 +1,6 @@
 
 
 async function deletePost(event) {
-    console.log(event)
     event.preventDefault();
 
     const post_id = window.location.toString().split('/')[
